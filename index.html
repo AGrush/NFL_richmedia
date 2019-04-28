@@ -147,6 +147,12 @@ body {
 .perspective{
   perspective: 600px;
 }
+@font-face {
+    font-family: EndzoneSans-Bold;
+    font-weight: bold;
+    src: url("EndzoneSans-Bold.otf") format("opentype");
+}
+
 </style>
   <script data-source="googbase_min.js" data-version="4" data-exports-type="googbase">(function(){(window.goog=window.goog||{}).inherits=function(a,c){function d(){}d.prototype=c.prototype;a.b=c.prototype;a.prototype=new d;a.prototype.constructor=a;a.a=function(f,g,h){for(var e=Array(arguments.length-2),b=2;b<arguments.length;b++)e[b-2]=arguments[b];return c.prototype[g].apply(f,e)}};}).call(this);
 </script>
@@ -223,7 +229,6 @@ b.getAttribute("src")&&b.setAttribute("src","data:image/gif;base64,R0lGODlhAQABA
 </script>
   <script type="text/javascript" id="js-TimelineMax" src="https://s0.2mdn.net/ads/studio/cached_libs/timelinemax_2.1.2_min.js"></script>
   <script type="text/javascript" id="js-TweenMax" src="https://s0.2mdn.net/ads/studio/cached_libs/tweenmax_2.1.2_min.js"></script>
-  
   <script data-source="gwdtaparea_min.js" data-version="6" data-exports-type="gwd-taparea">(function(){'use strict';var c;var e=function(a,b,f){if(f){var d=document.createEvent("CustomEvent");d.initCustomEvent(a,!0,!0,f)}else d=document.createEvent("Event"),d.initEvent(a,!0,!0);b.dispatchEvent(d);return d};var g=[],h=function(a){a=g.indexOf(a);0<=a&&g.splice(a,1)};document.addEventListener("click",function(a){for(var b=0;b<g.length;b++)if(25>Math.abs(a.clientX-g[b].m)&&25>Math.abs(a.clientY-g[b].o)||25>Math.abs(a.screenX-g[b].A)&&25>Math.abs(a.screenY-g[b].B))g.splice(b,1),a.stopPropagation(),a.preventDefault()},!0);var k=function(){};goog.inherits(k,HTMLElement);c=k.prototype;c.createdCallback=function(){this.l=this.j=0;this.f=this.b=this.g=this.c=null;this.a=!0;this.h=this.s.bind(this)};
 c.attachedCallback=function(){this.b||(this.c=this.i.bind(this),this.g=this.w.bind(this),this.b=this.v.bind(this),this.f=this.u.bind(this));this.addEventListener("click",this.c,!1);this.addEventListener("touchstart",this.g,!1);this.addEventListener("action",this.h,!1)};c.detachedCallback=function(){this.removeEventListener("click",this.c,!1);this.removeEventListener("touchstart",this.g,!1);this.removeEventListener("action",this.h,!1)};c.i=function(a){this.a&&e("action",this,a);this.a=!0};
 c.w=function(a){this.addEventListener("touchmove",this.b,!1);this.addEventListener("touchend",this.f,!1);a=a.touches[0];this.j=a.clientX;this.l=a.clientY};c.u=function(a){this.i(a);this.removeEventListener("touchmove",this.b,!1);this.removeEventListener("touchend",this.f,!1);a=a.changedTouches[0];a={m:a.clientX,o:a.clientY,A:a.screenX,B:a.screenY};g.push(a);setTimeout(h.bind(null,a),2500)};c.v=function(a){a=a.touches[0];this.a=this.a&&10>=Math.abs(this.j-a.clientX)&&10>=Math.abs(this.l-a.clientY)};
@@ -234,6 +239,7 @@ c.s=function(a){var b=this.getAttribute("exit-id"),f=this.getAttribute("product-
     window.gwd = window.gwd || {};
 
     ///////////////ANIMATION////////////////////////
+
     //random number helper function
     function randomNumber(min, max) {
       return Math.floor(Math.random() * (1 + max - min) + min);
@@ -250,18 +256,23 @@ c.s=function(a){var b=this.getAttribute("exit-id"),f=this.getAttribute("product-
           scene_1 = document.getElementById('Scene_1'),
           topbanner = document.querySelectorAll('.topbanner'),
           linez = document.querySelectorAll('.linez'),
+          chevron54 = document.querySelectorAll('.chevron54'),
+          bluestripe1 = document.querySelectorAll('.bluestripe1'),
+          scene3copy = document.querySelectorAll('.scene3copy'),
+          starxl = document.querySelectorAll('.starxl'),
+          starxr = document.querySelectorAll('.starxr'),
+          bluestripe2 = document.querySelectorAll('.bluestripe2'),
+          scene2x = document.querySelectorAll('.scene2x'),
+          letter = document.querySelectorAll('.letter'),
           square_rect = document.getElementById('square_rect');
       
-      // Set initial properties
+      // Initial properties
       TweenMax.set(scene_1, {perspective: 400});
-      TweenMax.set(square_rect, {opacity: 0});
+      TweenMax.set(square_rect, {autoAlpha: 0});
       TweenMax.set("#start_yft", {opacity: 0});
-      
-
+    
       // Outside timeline
       TweenMax.from(logo_ball, 1, {autoAlpha: 0.1, repeat: -1, yoyo: true}, 0)
-      // TweenMax.from("#logo_chevron", 1, {rotation: -720, transformOrigin: '50%, 50%'})
-      //TweenMax.staggerFrom("#iconsx", 2, {drawSVG:0}, 0.1, 0);
 
       //Nested timelines
       //SCENE 1
@@ -270,8 +281,12 @@ c.s=function(a){var b=this.getAttribute("exit-id"),f=this.getAttribute("product-
 
         .add("start")
         
-        //keep ball on screen on load
-        .from("#ball", 1, {x: 0}, 0)
+        //resets
+        .from("#ball", 0.1, {x: 0}, 0)
+        .from("#condensed", 0.1, {scaleY:1, scaleX:1}, 0)
+        .from("#games", 0.1, {scaleY:1, scaleX:1}, 0)
+        .from("#and", 0.1, {scaleY:1, scaleX:1}, 0)
+        .from("#highlights", 0.1, {scaleY:1, scaleX:1}, 0)
 
         //top left logo stars
         for (var i = 0; i < xstars.length; i++) {
@@ -279,7 +294,7 @@ c.s=function(a){var b=this.getAttribute("exit-id"),f=this.getAttribute("product-
             x: randomNumber(-100, 200),
             y: randomNumber(-150, -50),
             scale: 8,
-            opacity: 0,
+            autoAlpha: 0,
             rotation: randomNumber(360, -100),
             ease: Expo.easeOut
           }, 2 + (Math.random() * 2));
@@ -329,44 +344,141 @@ c.s=function(a){var b=this.getAttribute("exit-id"),f=this.getAttribute("product-
         .from("#player_white", 2, {x:60, ease: Power1.easeOut}, "-=2")
 
         //players move left&right a couple times
+
         .add("chase")
         .to("#player_red", 2, {x:30, ease: Power1.easeInOut}, "-=3")
         .to("#player_white", 2, {x:-30, ease: Power1.easeInOut}, "-=3")
-        .to("#player_red", 2, {x:0, ease: Power1.easeInOut})
-        .to("#player_white", 2, {x:10, ease: Power1.easeInOut}, "-=3")
-        .to("#player_red", 2, {x:30, ease: Power1.easeInOut})
-        .to("#player_white", 2, {x:-30, ease: Power1.easeInOut}, "-=3")
-        .to("#player_red", 2, {x:10, ease: Power1.easeInOut})
-        .to("#player_white", 2, {x:10, ease: Power1.easeInOut}, "-=3")
-        .to("#player_white", 2, {x:-40, ease: Power1.easeInOut}, "-=1")
+        .to("#player_red", 2, {x:0, ease: Power2.easeInOut})
+        .to("#player_white", 2, {x:10, ease: Power2.easeInOut}, "-=3")
+        .to("#player_red", 2, {x:30, ease: Power2.easeInOut})
+        .to("#player_white", 2, {x:-30, ease: Power2.easeInOut}, "-=3")
+        .to("#player_red", 2, {x:-180, ease: Power2.easeInOut})
+        .to("#player_white", 2, {x:10, ease: Power2.easeInOut}, "-=3.5")
+        .to("#player_white", 2, {x:-140, ease: Power2.easeInOut}, "-=1.5")
         
-        //stars moving in
+        //stars moving right
         .from("#small_stars", 6, {x:-200, ease: Power2.easeOut}, "chase")
 
-        //condensed elastic bounce
+        //Scene2 copy condensed
         .to("#condensed", 0.7, {scaleY:0.2, scaleX:1.4, transformOrigin: '50% 50%', ease: Power1.easeOut},"chase+=0")
         .to("#condensed", 0.8, {scaleY:1, scaleX:1, transformOrigin: '50% 50%', ease: Elastic.easeOut.config(2, 0.55)},"chase+=0.5")
-        
+        .to("#games", 0.7, {scaleY:0.2, scaleX:1.4, transformOrigin: '50% 50%', ease: Power1.easeOut},"chase+=0.5")
+        .to("#games", 0.8, {scaleY:1, scaleX:1, transformOrigin: '50% 50%', ease: Elastic.easeOut.config(2, 0.55)},"chase+=1")
+        .to("#games", 0.7, {scaleY:0.2, scaleX:1.4, transformOrigin: '50% 50%', ease: Power1.easeOut},"chase+=0.5")
+        .to("#games", 0.8, {scaleY:1, scaleX:1, transformOrigin: '50% 50%', ease: Elastic.easeOut.config(2, 0.55)},"chase+=1")
+        .to("#and", 0.7, {scaleY:0.2, scaleX:1.4, transformOrigin: '50% 50%', ease: Power1.easeOut},"chase+=1")
+        .to("#and", 0.8, {scaleY:1, scaleX:1, transformOrigin: '50% 50%', ease: Elastic.easeOut.config(2, 0.55)},"chase+=1.5")
+        .to("#highlights", 0.7, {scaleY:0.2, scaleX:1.4, transformOrigin: '50% 50%', ease: Power1.easeOut},"chase+=1.5")
+        .to("#highlights", 0.8, {scaleY:1, scaleX:1, transformOrigin: '50% 50%', ease: Elastic.easeOut.config(2, 0.55)},"chase+=2")
 
+        //linez expand and star loops a few times on new timeline
+        .staggerFrom(linez, 2, {scaleX:0, transformOrigin: '0%, 50%', ease:Power2.EaseInOut}, -0.35, "-=8")
+
+        //star spins
+        .to("#star", 0.5, {rotation:360, transformOrigin: '50% 50%', ease:Linear.easeNone, repeat:20}, "-=8")
+
+        //move Scene2 copy out
+        .staggerTo(["#condensed","#games","#and","#highlights", "#star"], 0.5, {cycle:{x: [300, -300], scale: [2, .5]}, autoAlpha:0, ease: Bounce.easeOut}, 0.1, "-=5")
+        .staggerTo(linez, 0.2, {cycle:{x: [300, -300], scale: [2, .5]}, autoAlpha:0, ease: Bounce.easeOut}, 0.1, "-=5.5")
+
+        //start your free trial chevron
+        .from('#chevron54', 2, {x:-25, autoAlpha:0, repeat:5}, "-=10")
+        .from('#syft', 2, {autoAlpha:0.3, repeat:5}, "chase")
+        
+        //move Scene2 blue lines out
+        .staggerTo(bluestripe1, 1, {x:300}, -0.2, "chase+=3.5")
+
+        //move Scene2 stars out
+        .to("#small_stars", 1, {x:320, ease:Power2.easeIn}, "chase+=5")
+        
+        .add("scene_3")
+        //background dissapears
+        .to("#bg_spectators", 0.1,{autoAlpha:0}, "chase+=5.5")
+
+        //move Scene3 players in
+        .from("#player_blue", 1.4, {x:100, ease:Power2.easeInOut}, "scene_3-=6.5")
+        .from("#player_green", 1.4, {x:-200, ease:Power2.easeInOut}, "scene_3-=6")
+
+        //scene3 copy slides in
+        .staggerFrom(scene3copy, 0.7, {cycle:{x: [40, -40], scale: [2, .5]}, autoAlpha:0, ease: Bounce.easeOut}, 0.4, "scene_3-=5.5")
+
+        //scene3 blue triangles slide in
+        .staggerFrom(bluestripe2, 1, {x:-130}, -0.3, "scene_3-=6.5")
+
+        //second stars slide in
+        .from("#small_stars2", 1, {x:-200, ease:Power2.easeOut}, "scene_3-=5")
+        
+        //scene3 chase
+        
+        .to("#player_blue", 2, {x:-13, ease: Power1.easeInOut}, "scene_3-=6")
+        .to("#player_blue", 1, {x:30, ease: Power2.easeInOut}, "scene_3-=4")
+        .to("#player_blue", 1.5, {x:-13, ease: Power1.easeInOut}, "scene_3-=3")
+        .to("#player_blue", 1.5, {x:140, ease: Power2.easeOut}, "scene_3-=1")
+
+        .to("#player_green", 2, {x:-13, ease: Power1.easeInOut}, "scene_3-=5.5")
+        .to("#player_green", 1.5, {x:20, ease: Power2.easeInOut}, "scene_3-=3.5")
+        .to("#player_green", 2.5, {x:-180, ease: Power2.easeInOut}, "scene_3-=2")
+
+        //Scene3 Copy exits up
+        .to("#see_every", 1, {y:-300, ease: Back.easeIn.config(1.5)}, "scene_3-=1.5")
+
+        //Scene3 move scene3 stuff goes back up
+        .to(topbanner, 1, {y:0, ease: Back.easeIn.config(1.5)}, "scene_3-=1.5")
+        .to("#start_yft", 1.5, {autoAlpha: 0}, "scene_3-=1.5")
+        .to("#bg_spectators_copy", 1, {autoAlpha:0, ease: Power1.easeIn}, "scene_3-=1.5")
+        .to("#small_stars2", 1, {y:-200, ease: Back.easeIn.config(1.5)}, "scene_3-=1.5")
+        .staggerTo(bluestripe2, 1, {y:-130}, -0.3, "scene_3-=1.5")
+        .to(square_rect, 1, {autoAlpha: 1}, "scene_3-=1.5")
+        
+        //Scene4 animate start your free trial
+
+        //color tween on words
+        .staggerFrom(letter, 1.5, {fill:"#ffffff", autoAlpha:0.8, repeat:1, repeatDelay:1, ease: Power1.easeInOut}, 0.3, "scene_3-=1")
+
+        //chevron
+        .fromTo("#chevron4", 2, {x:-6, autoAlpha:0.4,transformOrigin: '50% 50%', scale:0.4}, {x:6,transformOrigin: '50% 50%', autoAlpha:1, scale:1, ease: Back.easeOut.config(1), repeat:3}, "scene_3-=0.9")
+
+        //yellow square
+        .fromTo("#square", 2, {x:0}, {x:6, ease: Back.easeOut.config(1), repeat:3}, "scene_3-=1")
+        .to("#square", 1, {x:0}, "-=2.5")
+        .to("#chevron4", 1, {x:0, autoAlpha:1, scale:1}, "-=2.5")
+      
+        //scene4 cycle left stars in
+        for (var i = 0; i < starxl.length; i++) {
+          tl.from(starxl[i], 1, {
+            x: randomNumber(-200, 100),
+            y: randomNumber(-150, 100),
+            scale: 8,
+            autoAlpha: 0,
+            rotation: randomNumber(360, -100),
+            ease: Expo.easeOut
+          }, `scene_3+=${-0.5+(i*0.2)}`);
+        } 
+        //scene4 cycle right stars in
+        
+        for (var i = 0; i < starxr.length; i++) {
+          tl.from(starxr[i], 1, {
+            x: randomNumber(-100, 200),
+            y: randomNumber(-150, 100),
+            scale: 8,
+            autoAlpha: 0,
+            rotation: randomNumber(360, -100),
+            ease: Expo.easeOut
+          }, `scene_3+=${-0.5+(i*0.2)}`);
+        } 
         return tl;
       }
 
-      // function sceneTwo() {
-      //   var tl = new TimelineMax()
-      //   
-      //   return tl;
-      // }
-
       // Master timeline
-      var master = new TimelineMax({pause:true, repeat: 0, repeatDelay: 0, yoyo: false});
+      var master = new TimelineMax({repeat: 0, repeatDelay: 0, yoyo: false});
       
       master.add(sceneOne(), "sceneOne")
-            //.add(sceneTwo(), "sceneTwo");
 
       //Start on master timeline label
       //master.seek("labelOnMaster+=2");
-      //master.seek("ball_kick")
-      //master.play(10);
+      //master.seek("chase")
+      //, onComplete: function () { tl.pause() }
+      master.play(0);
     };
 
     ///////////////END ANIMATION////////////////////////
@@ -403,8 +515,8 @@ c.s=function(a){var b=this.getAttribute("exit-id"),f=this.getAttribute("product-
           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="250" viewBox="0 0 300 250">
             <defs>
               <filter id="AI_Shadow_1" name="AI_Shadow_1">
-                <feGaussianBlur result="blur" stdDeviation="2" in="SourceAlpha"/>
-                <feOffset result="offsetBlurredAlpha" dx="4" dy="4" in="blur"/>
+                <feGaussianBlur result="blur" stdDeviation="20" in="SourceAlpha"/>
+                <feOffset result="offsetBlurredAlpha" dx="25" dy="4" in="blur"/>
                 <feMerge>
                   <feMergeNode in="offsetBlurredAlpha"/>
                   <feMergeNode in="SourceGraphic"/>
@@ -461,46 +573,75 @@ c.s=function(a){var b=this.getAttribute("exit-id"),f=this.getAttribute("product-
                 </g>
                 <g id="stars">
                   <g id="_2starsl" data-name="2starsl">
-                    <polygon id="starx" points="64.34 113.93 65.72 118.17 70.17 118.17 66.57 120.79 67.94 125.03 64.34 122.41 60.73 125.03 62.11 120.79 58.5 118.17 62.96 118.17 64.34 113.93" style="fill: #fff"/>
-                    <polygon id="starx-2" data-name="starx" points="81.72 113.93 83.1 118.17 87.56 118.17 83.95 120.79 85.33 125.03 81.72 122.41 78.12 125.03 79.49 120.79 75.89 118.17 80.34 118.17 81.72 113.93" style="fill: #fff"/>
+                    <polygon class="starxl" points="64.34 113.93 65.72 118.17 70.17 118.17 66.57 120.79 67.94 125.03 64.34 122.41 60.73 125.03 62.11 120.79 58.5 118.17 62.96 118.17 64.34 113.93" style="fill: #fff"/>
+                    <polygon class="starxl" data-name="starx" points="81.72 113.93 83.1 118.17 87.56 118.17 83.95 120.79 85.33 125.03 81.72 122.41 78.12 125.03 79.49 120.79 75.89 118.17 80.34 118.17 81.72 113.93" style="fill: #fff"/>
+                    <polygon class="starxl" points="64.34 113.93 65.72 118.17 70.17 118.17 66.57 120.79 67.94 125.03 64.34 122.41 60.73 125.03 62.11 120.79 58.5 118.17 62.96 118.17 64.34 113.93" style="fill: #fff"/>
+                    <polygon class="starxl" data-name="starx" points="81.72 113.93 83.1 118.17 87.56 118.17 83.95 120.79 85.33 125.03 81.72 122.41 78.12 125.03 79.49 120.79 75.89 118.17 80.34 118.17 81.72 113.93" style="fill: #fff"/>
+                    <polygon class="starxl" points="64.34 113.93 65.72 118.17 70.17 118.17 66.57 120.79 67.94 125.03 64.34 122.41 60.73 125.03 62.11 120.79 58.5 118.17 62.96 118.17 64.34 113.93" style="fill: #fff"/>
+                    <polygon class="starxl" data-name="starx" points="81.72 113.93 83.1 118.17 87.56 118.17 83.95 120.79 85.33 125.03 81.72 122.41 78.12 125.03 79.49 120.79 75.89 118.17 80.34 118.17 81.72 113.93" style="fill: #fff"/>
+                    <polygon class="starxl" points="64.34 113.93 65.72 118.17 70.17 118.17 66.57 120.79 67.94 125.03 64.34 122.41 60.73 125.03 62.11 120.79 58.5 118.17 62.96 118.17 64.34 113.93" style="fill: #fff"/>
+                    <polygon class="starxl" data-name="starx" points="81.72 113.93 83.1 118.17 87.56 118.17 83.95 120.79 85.33 125.03 81.72 122.41 78.12 125.03 79.49 120.79 75.89 118.17 80.34 118.17 81.72 113.93" style="fill: #fff"/>
+                    <polygon class="starxl" points="64.34 113.93 65.72 118.17 70.17 118.17 66.57 120.79 67.94 125.03 64.34 122.41 60.73 125.03 62.11 120.79 58.5 118.17 62.96 118.17 64.34 113.93" style="fill: #fff"/>
+                    <polygon class="starxl" data-name="starx" points="81.72 113.93 83.1 118.17 87.56 118.17 83.95 120.79 85.33 125.03 81.72 122.41 78.12 125.03 79.49 120.79 75.89 118.17 80.34 118.17 81.72 113.93" style="fill: #fff"/>
+                    <polygon class="starxl" points="64.34 113.93 65.72 118.17 70.17 118.17 66.57 120.79 67.94 125.03 64.34 122.41 60.73 125.03 62.11 120.79 58.5 118.17 62.96 118.17 64.34 113.93" style="fill: #fff"/>
+                    <polygon class="starxl" data-name="starx" points="81.72 113.93 83.1 118.17 87.56 118.17 83.95 120.79 85.33 125.03 81.72 122.41 78.12 125.03 79.49 120.79 75.89 118.17 80.34 118.17 81.72 113.93" style="fill: #fff"/>
+                    <polygon class="starxl" points="64.34 113.93 65.72 118.17 70.17 118.17 66.57 120.79 67.94 125.03 64.34 122.41 60.73 125.03 62.11 120.79 58.5 118.17 62.96 118.17 64.34 113.93" style="fill: #fff"/>
+                    <polygon class="starxl" data-name="starx" points="81.72 113.93 83.1 118.17 87.56 118.17 83.95 120.79 85.33 125.03 81.72 122.41 78.12 125.03 79.49 120.79 75.89 118.17 80.34 118.17 81.72 113.93" style="fill: #fff"/>
+                    <polygon class="-starxl" points="64.34 113.93 65.72 118.17 70.17 118.17 66.57 120.79 67.94 125.03 64.34 122.41 60.73 125.03 62.11 120.79 58.5 118.17 62.96 118.17 64.34 113.93" style="fill: #fff"/>
+                    <polygon class="-starxl" data-name="starx" points="81.72 113.93 83.1 118.17 87.56 118.17 83.95 120.79 85.33 125.03 81.72 122.41 78.12 125.03 79.49 120.79 75.89 118.17 80.34 118.17 81.72 113.93" style="fill: #fff"/>
                   </g>
                   <g id="_2starsr" data-name="2starsr">
-                    <polygon id="starx-3" data-name="starx" points="218.42 113.93 219.79 118.17 224.25 118.17 220.65 120.79 222.02 125.03 218.42 122.41 214.81 125.03 216.19 120.79 212.58 118.17 217.04 118.17 218.42 113.93" style="fill: #fff"/>
-                    <polygon id="starx-4" data-name="starx" points="235.8 113.93 237.18 118.17 241.64 118.17 238.03 120.79 239.41 125.03 235.8 122.41 232.19 125.03 233.57 120.79 229.97 118.17 234.42 118.17 235.8 113.93" style="fill: #fff"/>
+                    <polygon class="starxr" data-name="starx" points="218.42 113.93 219.79 118.17 224.25 118.17 220.65 120.79 222.02 125.03 218.42 122.41 214.81 125.03 216.19 120.79 212.58 118.17 217.04 118.17 218.42 113.93" style="fill: #fff"/>
+                    <polygon class="starxr" data-name="starx" points="235.8 113.93 237.18 118.17 241.64 118.17 238.03 120.79 239.41 125.03 235.8 122.41 232.19 125.03 233.57 120.79 229.97 118.17 234.42 118.17 235.8 113.93" style="fill: #fff"/>
+                    <polygon class="starxr" data-name="starx" points="218.42 113.93 219.79 118.17 224.25 118.17 220.65 120.79 222.02 125.03 218.42 122.41 214.81 125.03 216.19 120.79 212.58 118.17 217.04 118.17 218.42 113.93" style="fill: #fff"/>
+                    <polygon class="starxr" data-name="starx" points="235.8 113.93 237.18 118.17 241.64 118.17 238.03 120.79 239.41 125.03 235.8 122.41 232.19 125.03 233.57 120.79 229.97 118.17 234.42 118.17 235.8 113.93" style="fill: #fff"/>
+                    <polygon class="starxr" data-name="starx" points="218.42 113.93 219.79 118.17 224.25 118.17 220.65 120.79 222.02 125.03 218.42 122.41 214.81 125.03 216.19 120.79 212.58 118.17 217.04 118.17 218.42 113.93" style="fill: #fff"/>
+                    <polygon class="starxr" data-name="starx" points="235.8 113.93 237.18 118.17 241.64 118.17 238.03 120.79 239.41 125.03 235.8 122.41 232.19 125.03 233.57 120.79 229.97 118.17 234.42 118.17 235.8 113.93" style="fill: #fff"/>
+                    <polygon class="starxr" data-name="starx" points="218.42 113.93 219.79 118.17 224.25 118.17 220.65 120.79 222.02 125.03 218.42 122.41 214.81 125.03 216.19 120.79 212.58 118.17 217.04 118.17 218.42 113.93" style="fill: #fff"/>
+                    <polygon class="starxr" data-name="starx" points="235.8 113.93 237.18 118.17 241.64 118.17 238.03 120.79 239.41 125.03 235.8 122.41 232.19 125.03 233.57 120.79 229.97 118.17 234.42 118.17 235.8 113.93" style="fill: #fff"/>
+                    <polygon class="starxr" data-name="starx" points="218.42 113.93 219.79 118.17 224.25 118.17 220.65 120.79 222.02 125.03 218.42 122.41 214.81 125.03 216.19 120.79 212.58 118.17 217.04 118.17 218.42 113.93" style="fill: #fff"/>
+                    <polygon class="starxr" data-name="starx" points="235.8 113.93 237.18 118.17 241.64 118.17 238.03 120.79 239.41 125.03 235.8 122.41 232.19 125.03 233.57 120.79 229.97 118.17 234.42 118.17 235.8 113.93" style="fill: #fff"/>
+                    <polygon class="starxr" data-name="starx" points="218.42 113.93 219.79 118.17 224.25 118.17 220.65 120.79 222.02 125.03 218.42 122.41 214.81 125.03 216.19 120.79 212.58 118.17 217.04 118.17 218.42 113.93" style="fill: #fff"/>
+                    <polygon class="starxr" data-name="starx" points="235.8 113.93 237.18 118.17 241.64 118.17 238.03 120.79 239.41 125.03 235.8 122.41 232.19 125.03 233.57 120.79 229.97 118.17 234.42 118.17 235.8 113.93" style="fill: #fff"/>
+                    <polygon class="starxr" data-name="starx" points="218.42 113.93 219.79 118.17 224.25 118.17 220.65 120.79 222.02 125.03 218.42 122.41 214.81 125.03 216.19 120.79 212.58 118.17 217.04 118.17 218.42 113.93" style="fill: #fff"/>
+                    <polygon class="starxr" data-name="starx" points="235.8 113.93 237.18 118.17 241.64 118.17 238.03 120.79 239.41 125.03 235.8 122.41 232.19 125.03 233.57 120.79 229.97 118.17 234.42 118.17 235.8 113.93" style="fill: #fff"/>
+                    <polygon class="-starxr" data-name="starx" points="218.42 113.93 219.79 118.17 224.25 118.17 220.65 120.79 222.02 125.03 218.42 122.41 214.81 125.03 216.19 120.79 212.58 118.17 217.04 118.17 218.42 113.93" style="fill: #fff"/>
+                    <polygon class="-starxr" data-name="starx" points="235.8 113.93 237.18 118.17 241.64 118.17 238.03 120.79 239.41 125.03 235.8 122.41 232.19 125.03 233.57 120.79 229.97 118.17 234.42 118.17 235.8 113.93" style="fill: #fff"/>
                   </g>
                 </g>
               </g>
               <g id="square_rect">
-                <rect id="rect" x="26" y="183.17" width="212.19" height="36" style="fill: #fdd901"/>
                 <rect id="square" x="238.19" y="183.17" width="35.9" height="36" style="fill: #e8b012"/>
+                <rect id="rect" x="26" y="183.17" width="212.19" height="36" style="fill: #fdd901"/>
+                
               </g>
               <g id="chevron4">
                 <path d="M252.12,193.1v4.55l4.52,3.86-4.52,3.86v4.55l9.85-8.41Z" style="fill: #fff"/>
               </g>
               <g id="start_your_free">
-                <text transform="translate(39 208.07)" style="font-size: 16.492998123168945px;fill: #192743;font-family: EndzoneSans-Bold, Endzone Sans;font-weight: 700"><tspan style="letter-spacing: -0.010006613792561906em">S</tspan><tspan x="10.31" y="0" style="letter-spacing: -0.0900003134005568em">T</tspan><tspan x="18.54" y="0" style="letter-spacing: -0.000029605366250183154em">A</tspan><tspan x="29.75" y="0" style="letter-spacing: -0.019954016852623446em">R</tspan><tspan x="40.29" y="0" style="letter-spacing: -0.05000346359655935em">T</tspan><tspan x="49.18" y="0" style="letter-spacing: -0.029990236011435537em"> </tspan><tspan x="52.81" y="0" style="letter-spacing: -0.0450001567002784em">Y</tspan><tspan x="62.62" y="0">OUR FREE</tspan><tspan x="140.35" y="0" style="letter-spacing: -0.030019841377685718em"> </tspan><tspan x="143.98" y="0">TRIAL</tspan></text>
+                <text class="letter" transform="translate(39 208.07)" style="font-size: 16.492998123168945px;font-family: EndzoneSans-Bold, Endzone Sans;font-weight: 700"><tspan style="fill: #192743" class="letter" style="letter-spacing: -0.010006613792561906em">S</tspan><tspan style="fill: #192743" class="letter" x="10.31" y="0" style="letter-spacing: -0.0900003134005568em">T</tspan><tspan style="fill: #192743" class="letter" x="18.54" y="0" style="letter-spacing: -0.000029605366250183154em">A</tspan><tspan style="fill: #192743" class="letter" x="29.75" y="0" style="letter-spacing: -0.019954016852623446em">R</tspan><tspan style="fill: #192743" class="letter" x="40.29" y="0" style="letter-spacing: -0.05000346359655935em">T</tspan><tspan style="fill: #192743" class="letter" x="49.18" y="0" style="letter-spacing: -0.029990236011435537em"> </tspan><tspan style="fill: #192743" class="letter" x="52.81" y="0" style="letter-spacing: -0.0450001567002784em">Y</tspan><tspan style="fill: #192743" class="letter" x="62.62" y="0">OUR FREE</tspan><tspan style="fill: #192743" class="letter" x="140.35" y="0" style="letter-spacing: -0.030019841377685718em"> </tspan><tspan style="fill: #192743" class="letter" x="143.98" y="0">TRIAL</tspan></text>
               </g>
             </g>
             <g id="Scene_3">
               <g id="bg_spectators_copy" data-name="bg_spectators copy">
                 <use transform="scale(0.63 0.62)" xlink:href="#image"/>
               </g>
-              <g id="bluestripe5">
-                <g style="filter: url(#AI_Shadow_1)">
+              <g id="bluestripe5" class="bluestripe2">
+                <g>
                   <polygon points="122.94 0 0 104.96 0 0 122.94 0" style="fill: #0070b9"/>
                 </g>
               </g>
               <g id="small_stars2">
                 <path id="_" data-name=" " d="M4.5,4l.43,1.21,1.28,0-1,.78L5.55,7.3,4.5,6.57,3.44,7.3l.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78L45.5,7.3l-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0ZM4.5,24.06l.43,1.21,1.28,0-1,.78.36,1.23L4.5,26.59l-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0ZM4.5,44.07l.43,1.21,1.28,0-1,.78.36,1.23L4.5,46.6l-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0ZM4.5,64.09l.43,1.21,1.28,0-1,.78.36,1.23L4.5,66.62l-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0ZM4.5,84.11l.43,1.21,1.28,0-1,.78.36,1.23L4.5,86.64l-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm-99.86,20,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm-99.86,20,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm-99.86,20,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm-99.86,20,.43,1.21,1.28,0-1,.78.36,1.23L4.5,166.7l-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm-99.86,20,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0ZM4.5,204.2l.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm-99.86,20,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Z" style="fill: #fff"/>
               </g>
-              <g id="bluestripe6">
-                <g style="filter: url(#AI_Shadow_1)">
+              <g id="bluestripe6" class="bluestripe2">
+                <g>
                   <polygon points="45.87 0 0 39.16 0 0 45.87 0" style="fill: #007dc3"/>
                 </g>
               </g>
               <image id="player_green" width="219" height="397" transform="translate(-18.79 10.04) scale(0.62)" xlink:href="player_green-tiny.png"/>
               <g id="see_every">
-                <g>
+                <g class="scene3copy">
                   <path d="M122.15,27.48l1.16-2.62a9,9,0,0,0,4.36,1.1c1.64,0,2.62-.15,2.62-1.27s-.69-1.29-2.89-1.62c-3.47-.52-4.62-1.37-4.62-4,0-2.83,2.12-4.09,5.45-4.09a9.62,9.62,0,0,1,5.11,1.27l-1.18,2.62a8.09,8.09,0,0,0-4-1c-1.37,0-2.16.31-2.16,1.14s.25,1.16,2.22,1.43c3.41.48,5.28,1.1,5.28,4.18,0,3.28-2.41,4.24-5.86,4.24A10.53,10.53,0,0,1,122.15,27.48Z" style="fill: #fff"/>
                   <path d="M135.16,28.63V15.14h9.69v2.64H138.3v2.77h5.49v2.58H138.3V26h6.55v2.64Z" style="fill: #fff"/>
                   <path d="M146.78,28.63V15.14h9.69v2.64h-6.55v2.77h5.49v2.58h-5.49V26h6.55v2.64Z" style="fill: #fff"/>
@@ -510,7 +651,7 @@ c.s=function(a){var b=this.getAttribute("exit-id"),f=this.getAttribute("product-
                   <path d="M207,28.63l-2.54-5.16H202.7v5.16h-3.14V15.14h6c3.28,0,4.59,1.45,4.59,4.14v0c0,2.1-.73,3.16-2.51,3.87l3.06,5.43Zm-1.95-10.85H202.7v3h2.37c1.43,0,1.85-.37,1.85-1.52S206.49,17.78,205.07,17.78Z" style="fill: #fff"/>
                   <path d="M219.11,15.14h3.74L218.48,24l.06,4.62h-3.31l.06-4.62-4.37-8.86h3.74L216.88,21Z" style="fill: #fff"/>
                 </g>
-                <g>
+                <g class="scene3copy">
                   <path d="M125.26,37.51h-3.11V35.31h8.58v2.19h-3.11V58.22h-2.36Z" style="fill: #fff"/>
                   <path d="M141.13,53.41c0,3-.82,5.14-4.65,5.14s-4.65-2.09-4.65-5.14V40.12c0-3,.79-5.14,4.65-5.14s4.65,2.09,4.65,5.14Zm-6.81.1c0,2.06.33,2.88,2.16,2.88s2.16-.82,2.16-2.88V40c0-2.06-.36-2.88-2.16-2.88s-2.16.82-2.16,2.88Z" style="fill: #fff"/>
                   <path d="M143.32,53.94V35.31h2.39V53.74c0,2.16.69,2.75,2.16,2.75S150,55.9,150,53.74V35.31h2.36V53.94c0,3-1,4.61-4.52,4.61S143.32,57,143.32,53.94Z" style="fill: #fff"/>
@@ -522,25 +663,25 @@ c.s=function(a){var b=this.getAttribute("exit-id"),f=this.getAttribute("product-
                   <path d="M220,58.22l-4.48-18.46.52,18.46h-2.39V35.31h2.81L221,53.77l-.52-18.46h2.39V58.22Z" style="fill: #fff"/>
                 </g>
                 <g>
-                  <g>
+                  <g class="scene3copy">
                     <path d="M122.15,85.61V64.71H127V81.55h9.31v4.06Z" style="fill: #fff"/>
                     <path d="M138.84,64.71h4.87v20.9h-4.87Z" style="fill: #fff"/>
                     <path d="M160.42,64.71h5.22l-6.87,20.9h-6l-6.87-20.9h5.22l4.63,15.82Z" style="fill: #fff"/>
                     <path d="M167.74,85.61V64.71h15V68.8H172.6v4.3h8.51v4H172.6v4.42h10.15v4.09Z" style="fill: #fff"/>
                   </g>
-                  <g>
+                  <g class="scene3copy">
                     <path d="M186.79,64.71h2.15l1.16,18,2-18h2.81l2,18,1.16-18h2.15l-1.76,20.9h-3.1l-1.82-18.18-1.82,18.18h-3.11Z" style="fill: #fff"/>
                     <path d="M201.68,64.71h2.18v20.9h-2.18Z" style="fill: #fff"/>
                     <path d="M208.1,66.71h-2.84v-2h7.82v2h-2.84v18.9H208.1Z" style="fill: #fff"/>
                     <path d="M216.67,75.85v9.76h-2.18V64.71h2.18v9.17h4V64.71h2.15v20.9H220.7V75.85Z" style="fill: #fff"/>
                   </g>
                 </g>
-                <g>
+                <g class="scene3copy">
                   <path d="M144.91,132.22,130.64,105.7l.69,26.52h-9.19V91.77H132.9l14.27,26.52-.69-26.52h9.19v40.44Z" style="fill: #fff"/>
                   <path d="M190.27,91.77v7.92H172v9.59h16.47V117H172v15.2h-9.42V91.77Z" style="fill: #fff"/>
                   <path d="M195.46,132.22V91.77h9.36v32.59h18v7.86Z" style="fill: #fff"/>
                 </g>
-                <g>
+                <g class="scene3copy">
                   <path d="M130.91,154.44l-3-6.06h-2.08v6.06h-3.69V138.6h7.06c3.85,0,5.39,1.7,5.39,4.86v0c0,2.47-.86,3.71-2.94,4.55l3.6,6.38Zm-2.29-12.74h-2.78v3.57h2.78c1.67,0,2.17-.43,2.17-1.79S130.3,141.7,128.62,141.7Z" style="fill: #fff"/>
                   <path d="M137.06,154.44V138.6h11.38v3.1h-7.69V145h6.45v3h-6.45v3.35h7.69v3.1Z" style="fill: #fff"/>
                   <path d="M163.6,148.56c0,3.64-1.92,5.88-6.67,5.88H150.7V138.6h6.22c4.75,0,6.67,2.24,6.67,5.88Zm-3.67-4c0-1.61-.75-2.87-3-2.87h-2.56v9.68h2.56c2.26,0,3-1.27,3-2.87Z" style="fill: #fff"/>
@@ -558,21 +699,21 @@ c.s=function(a){var b=this.getAttribute("exit-id"),f=this.getAttribute("product-
               <use transform="scale(0.63 0.62)" xlink:href="#image"/>
             </g>
             <g id="Scene_2">
-              <g id="bluestripe2">
+              <g class="bluestripe1">
                 <g style="filter: url(#AI_Shadow_1)">
                   <polygon points="300 20.45 300 250 31.13 250 300 20.45" style="fill: #0070b9"/>
                 </g>
               </g>
-              <g id="bluestripe1">
+              <g class="bluestripe1">
                 <g style="filter: url(#AI_Shadow_1)">
                   <polygon points="300 100.24 300 250 124.58 250 300 100.24" style="fill: #007dc3"/>
                 </g>
               </g>
-              <image id="player_white" width="258" height="461" transform="translate(-37 17) scale(0.52)" xlink:href="player_white-tiny.png"/>
-              <g id="small_stars">
+              <image id="player_white" class="scene2x" width="258" height="461" transform="translate(-37 17) scale(0.52)" xlink:href="player_white-tiny.png"/>
+              <g id="small_stars" class="scene2x">
                 <path id="_2" data-name=" " d="M7.68,16.54l.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73L7,18.57l-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73L27,18.57l-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.36-1.23-1-.78,1.28,0Zm20,0L68,17.76l1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0L88,17.76l1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0ZM7.68,36.56l.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73L7,38.59l-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73L27,38.59l-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.36-1.23-1-.78,1.28,0Zm20,0L68,37.77l1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0L88,37.77l1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0ZM7.68,56.58l.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73L7,58.6l-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73L27,58.6l-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.36-1.23-1-.78,1.28,0Zm20,0L68,57.79l1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0L88,57.79l1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0ZM7.68,76.59l.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73L7,78.62l-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73L27,78.62l-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.36-1.23-1-.78,1.28,0Zm20,0L68,77.8l1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0L88,77.8l1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0L108,77.8l1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0ZM7.68,96.61l.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73L7,98.64l-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73L27,98.64l-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.36-1.23-1-.78,1.28,0Zm20,0L68,97.82l1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0L88,97.82l1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm-159.78,20,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73L7,118.65l-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.36-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.36-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm-159.78,20,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73L7,138.67l-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.36-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.36-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm-159.78,20,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73L7,158.69l-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.36-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.36-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm-159.78,20,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73L7,178.7l-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73L27,178.7l-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.36-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm-159.78,20,.43,1.21,1.28,0-1,.78L8.74,200l-1.06-.73L6.63,200,7,198.72l-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73L26.6,200l.36-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.36-1.23-1-.78,1.28,0Zm20,0L68,197.9l1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0L88,197.9l1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm-159.78,20,.43,1.21,1.28,0-1,.78L8.74,220l-1.06-.73L6.63,220,7,218.73,6,218l1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73L26.6,220l.36-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.36-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm-159.78,20,.43,1.21,1.28,0-1,.78L8.74,240l-1.06-.73L6.63,240,7,238.75,6,238l1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73L26.6,240l.36-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.36-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Zm20,0,.43,1.21,1.28,0-1,.78.36,1.23-1.06-.73-1.06.73.37-1.23-1-.78,1.28,0Z" style="fill: #fff"/>
               </g>
-              <image id="player_red" width="361" height="676" transform="translate(10.65 -10.5) scale(0.5)" xlink:href="player_red-tiny.png"/>
+              <image id="player_red" class="scene2x" width="361" height="676" transform="translate(10.65 -10.5) scale(0.5)" xlink:href="player_red-tiny.png"/>
               <g id="condensed_games">
                 <g id="highlights">
                   <path d="M176,117.53v11.82h-2.64v-25.3H176v11.09h4.88V104.05h2.6v25.3h-2.6V117.53Z" style="fill: #fff"/>
@@ -604,13 +745,13 @@ c.s=function(a){var b=this.getAttribute("exit-id"),f=this.getAttribute("product-
                   <path d="M239.83,77.51V56.42H255v4.13H244.74v4.34h8.58v4h-8.58v4.46H255v4.13Z" style="fill: #fff"/>
                   <path d="M256.79,75.7l1.81-4.1a14.12,14.12,0,0,0,6.81,1.72c2.56,0,4.1-.24,4.1-2s-1.08-2-4.52-2.53c-5.42-.81-7.23-2.14-7.23-6.3,0-4.43,3.31-6.39,8.52-6.39a15,15,0,0,1,8,2l-1.84,4.1a12.64,12.64,0,0,0-6.21-1.57c-2.14,0-3.37.48-3.37,1.78s.39,1.81,3.46,2.23c5.33.75,8.25,1.72,8.25,6.54,0,5.12-3.77,6.63-9.16,6.63A16.46,16.46,0,0,1,256.79,75.7Z" style="fill: #fff"/>
                 </g>
-                <g id="star">
-                  <polygon points="223.97 137.3 225.88 143.18 232.07 143.18 227.06 146.81 228.97 152.69 223.97 149.06 218.97 152.69 220.88 146.81 215.88 143.18 222.06 143.18 223.97 137.3" style="fill: #fff"/>
+                <g >
+                  <polygon id="star" points="223.97 137.3 225.88 143.18 232.07 143.18 227.06 146.81 228.97 152.69 223.97 149.06 218.97 152.69 220.88 146.81 215.88 143.18 222.06 143.18 223.97 137.3" style="fill: #fff"/>
                   <line class="linez" x1="173.39" y1="146.99" x2="209.33" y2="146.99" style="fill: none;stroke: #fff;stroke-miterlimit: 10;stroke-width: 2px"/>
                   <line class="linez" x1="238.62" y1="146.99" x2="274.56" y2="146.99" style="fill: none;stroke: #fff;stroke-miterlimit: 10;stroke-width: 2px"/>
                 </g>
-                <g id="and">
-                  <g>
+                <g>
+                  <g id="and">
                     <path d="M211.35,96.1h-2.68L212.2,85.4h3.06l3.52,10.71H216.1l-.57-1.93h-3.61ZM212.55,92h2.36l-1.18-4Z" style="fill: #fff"/>
                     <path d="M225.87,96.1l-3.78-7,.18,7h-2.43V85.4h2.84l3.78,7-.18-7h2.43V96.1Z" style="fill: #fff"/>
                     <path d="M239.27,92.13c0,2.46-1.3,4-4.51,4h-4.21V85.4h4.21c3.21,0,4.51,1.51,4.51,4Zm-2.48-2.71a1.77,1.77,0,0,0-2-1.94H233V94h1.73a1.77,1.77,0,0,0,2-1.94Z" style="fill: #fff"/>
@@ -756,7 +897,8 @@ c.s=function(a){var b=this.getAttribute("exit-id"),f=this.getAttribute("product-
 
 
               <g id="start_yft" class="topbanner">
-                <path id="chevron54" d="M136.47,62.71v2.43l2.42,2.07-2.42,2.07v2.43l5.27-4.5Z" style="fill: #108bc6"/>
+                <path class="chevron54" d="M136.47,62.71v2.43l2.42,2.07-2.42,2.07v2.43l5.27-4.5Z" style="fill:#ffffff"/>
+                <path id="chevron54" d="M136.47,62.71v2.43l2.42,2.07-2.42,2.07v2.43l5.27-4.5Z" style="fill:#ffffff"/>
                 <g id="syft">
                   <path d="M145.24,71l.72-1.63a5.62,5.62,0,0,0,2.71.68c1,0,1.63-.1,1.63-.79s-.43-.8-1.8-1c-2.16-.32-2.88-.85-2.88-2.51s1.32-2.54,3.39-2.54a6,6,0,0,1,3.18.79l-.73,1.63A5,5,0,0,0,149,65c-.85,0-1.34.19-1.34.71s.16.72,1.38.89c2.12.3,3.29.68,3.29,2.6s-1.5,2.64-3.65,2.64A6.55,6.55,0,0,1,145.24,71Z" style="fill: #fdd901"/>
                   <path d="M155.05,65h-2.31V63.36h6.58V65H157v6.75h-2Z" style="fill: #fdd901"/>
