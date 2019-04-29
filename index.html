@@ -411,8 +411,8 @@ c.s=function(a){var b=this.getAttribute("exit-id"),f=this.getAttribute("product-
         
         .to("#player_blue", 2, {x:-13, ease: Power1.easeInOut}, "scene_3-=6")
         .to("#player_blue", 1, {x:30, ease: Power2.easeInOut}, "scene_3-=4")
-        .to("#player_blue", 1.5, {x:-13, ease: Power1.easeInOut}, "scene_3-=3")
-        .to("#player_blue", 1.5, {x:140, ease: Power2.easeOut}, "scene_3-=1")
+        .to("#player_blue", 1, {x:-3, ease: Power1.easeInOut}, "scene_3-=3")
+        .to("#player_blue", 2, {x:130, ease: Power2.easeInOut}, "scene_3-=2")
 
         .to("#player_green", 2, {x:-13, ease: Power1.easeInOut}, "scene_3-=5.5")
         .to("#player_green", 1.5, {x:20, ease: Power2.easeInOut}, "scene_3-=3.5")
@@ -477,7 +477,7 @@ c.s=function(a){var b=this.getAttribute("exit-id"),f=this.getAttribute("product-
       //master.seek("labelOnMaster+=2");
       //master.seek("chase")
       //, onComplete: function () { tl.pause() }
-      master.play(0);
+      master.play(20);
     };
 
     ///////////////END ANIMATION////////////////////////
