@@ -477,7 +477,7 @@ c.s=function(a){var b=this.getAttribute("exit-id"),f=this.getAttribute("product-
       //master.seek("labelOnMaster+=2");
       //master.seek("chase")
       //, onComplete: function () { tl.pause() }
-      master.play(0);
+      //master.play(0);
     };
 
     ///////////////END ANIMATION////////////////////////
@@ -1022,7 +1022,7 @@ c.s=function(a){var b=this.getAttribute("exit-id"),f=this.getAttribute("product-
        * initialized and before the default page of the Ad is shown.
        */
       function handleAdInitialized(event) {
-
+        tl.restart();
       }
 
       window.addEventListener('DOMContentLoaded',
